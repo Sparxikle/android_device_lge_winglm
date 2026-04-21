@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layouts>
+    <layout>
+        <state>0</state>
+        <display enabled="true" defaultDisplay="true" displayGroup="">
+            <port>129</port>
+        </display>
+    </layout>
+    <layout>
+        <state>1</state>
+        <display enabled="true" defaultDisplay="true" displayGroup="">
+            <port>129</port>
+        </display>
+        <display enabled="true" displayGroup="">
+            <port>130</port>
+        </display>
+    </layout>
+</layouts>

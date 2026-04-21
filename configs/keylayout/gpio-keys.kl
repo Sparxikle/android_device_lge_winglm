@@ -1,0 +1,8 @@
+# Copyright (c) 2018, The Linux Foundation. All rights reserved.
+# SPDX-License-Identifier: Apache-2.0
+
+key 115   VOLUME_UP
+key 114   VOLUME_DOWN
+key 377   INFO
+
+switch 0   LID

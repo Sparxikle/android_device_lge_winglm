@@ -18,15 +18,15 @@ $(call inherit-product, vendor/lineage/config/common_full_phone.mk)
 $(call inherit-product, $(LOCAL_PATH)/device.mk)
 
 # Device identifier. This must come after all inclusions.
-PRODUCT_NAME := lineage_caymanlm
-PRODUCT_DEVICE := caymanlm
+PRODUCT_NAME := lineage_winglm
+PRODUCT_DEVICE := winglm
 PRODUCT_MANUFACTURER := LGE
 PRODUCT_BRAND := LGE
-PRODUCT_MODEL := VELVET
+PRODUCT_MODEL := LM-F100N
 
 PRODUCT_GMS_CLIENTID_BASE := android-lge
 
 PRODUCT_BUILD_PROP_OVERRIDES += \
-    DeviceProduct=caymanlm \
-    BuildDesc="caymanlm-user 13 TKQ1.220829.002 231811419f557 release-keys" \
-    BuildFingerprint="lge/caymanlm/caymanlm:13/TKQ1.220829.002/231811419f557:user/release-keys"
+    DeviceProduct=winglm \
+    BuildDesc="winglm-user 13 TKQ1.220829.002 7250130230901 release-keys" \
+    BuildFingerprint="lge/winglm/winglm:13/TKQ1.220829.002/7250130230901:user/release-keys"

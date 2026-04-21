@@ -114,6 +114,9 @@ vendor/lib64/libSNPE.so
 vendor/lib64/libSRIyuv.so
 vendor/lib64/libarcsoft_beauty_picselfie.so
 vendor/lib64/libarcsoft_dualcam_portraitlighting.so
+vendor/lib64/libarcsoft_dualcam_refocus.so
+vendor/lib64/libarcsoft_dualcam_refocus_front.so
+vendor/lib64/libarcsoft_dualcam_refocus_rear_t.so
 vendor/lib64/libarcsoft_object_tracking.so
 vendor/lib64/libarcsoft_picselfie_algorithm.so
 vendor/lib64/libarcsoft_singlecam_portrait_lighting.so
@@ -152,17 +155,29 @@ vendor/lib64/libremosaic_wrapper.so
 vendor/lib64/libsymphony-cpu.so
 vendor/lib64/vendor.qti.hardware.camera.postproc@1.0-service-impl.so
 vendor/lib64/vendor.qti.hardware.seccam@1.0.so
+vendor/bin/hw/vendor.lge.hardware.motor@1.0-service-popupcam
+vendor/etc/init/vendor.lge.hardware.motor@1.0-service-popupcam.rc
 vendor/lib/vendor.lge.hardware.motor@1.0.so
 vendor/lib64/vendor.lge.hardware.motor@1.0.so
+vendor/bin/hw/vendor.lge.hardware.sensors.devicecontext@1.0-service
+vendor/etc/init/vendor.lge.hardware.sensors.devicecontext@1.0-service.rc
+vendor/etc/vintf/manifest/vendor.lge.hardware.sensors.devicecontext@1.0-service.xml
+vendor/lib64/hw/vendor.lge.hardware.sensors.devicecontext@1.0-impl.so
+vendor/lib64/vendor.lge.hardware.sensors.devicecontext@1.0.so
 vendor/lib64/libsns_device_context_prox.so
-vendor/lib/libarcsoft_dualcam_portraitlighting.so
-vendor/lib/libarcsoft_object_tracking.so
-vendor/bin/hw/android.hardware.camera.provider@2.4-service_64
+#vendor/lib/libarcsoft_dualcam_portraitlighting.so
+#vendor/lib/libarcsoft_dualcam_refocus.so
+#vendor/lib/libarcsoft_dualcam_refocus_front.so
+#vendor/lib/libarcsoft_dualcam_refocus_rear_t.so
+#vendor/lib/libarcsoft_object_tracking.so
+
 vendor/lib/libarcsoft_makeup.so
 vendor/lib64/libarcsoft_makeup.so
 
 vendor/lib/libmpbase.so
 
+system_ext/lib/libarcsoft_dualcam_refocus_rear-jni.so
+system_ext/lib64/libarcsoft_dualcam_refocus_rear-jni.so
 
 # Camera - automatic white balance and exposure
 vendor/lib64/camera/liblg_aec_param_s5k2la_binning_preview.so
@@ -299,12 +314,14 @@ vendor/lib64/liblgawb_main.so
 
 # Camera - components
 vendor/lib64/camera/components/com.lge.node.camerasolution.so
+vendor/lib64/camera/components/com.lge.node.capturebokeh.so
 vendor/lib64/camera/components/com.lge.node.elvis.so
 vendor/lib64/camera/components/com.lge.node.emeta.so
 vendor/lib64/camera/components/com.lge.node.hdr.so
 vendor/lib64/camera/components/com.lge.node.hlapse.so
 vendor/lib64/camera/components/com.lge.node.lavis.so
 vendor/lib64/camera/components/com.lge.node.multiframe.so
+vendor/lib64/camera/components/com.lge.node.realtimebokeh.so
 vendor/lib64/camera/components/com.lge.stats.aec.so
 vendor/lib64/camera/components/com.lge.stats.af.so
 vendor/lib64/camera/components/com.lge.stats.af_core.so
@@ -810,3 +827,4 @@ vendor/etc/wifi/GLOBAL/bdwlan.bin;SYMLINK=vendor/firmware/wlan/qca_cld/bdwlan.bi
 vendor/etc/wifi/GLOBAL/bdwlan_ch0.bin;SYMLINK=vendor/firmware/wlan/qca_cld/bdwlan_ch0.bin
 vendor/etc/wifi/GLOBAL/bdwlan_ch1.bin;SYMLINK=vendor/firmware/wlan/qca_cld/bdwlan_ch1.bin
 vendor/bin/immvibed
+

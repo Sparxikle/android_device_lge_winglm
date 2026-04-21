@@ -5,4 +5,4 @@
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/lineage_caymanlm.mk
+    $(LOCAL_DIR)/lineage_winglm.mk

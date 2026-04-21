@@ -4,12 +4,17 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
-DEVICE_PATH := device/lge/caymanlm
+DEVICE_PATH := device/lge/winglm
 
-DEVICE_NAME := caymanlm
+DEVICE_NAME := winglm
 
 # Inherit from the common device configuration.
 $(call inherit-product, device/lge/sm7250-common/sm7250-common.mk)
+
+PRODUCT_COPY_FILES += \
+    frameworks/av/media/libstagefright/data/media_codecs_google_c2.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_google_c2.xml \
+    frameworks/av/media/libstagefright/data/media_codecs_google_c2_audio.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_google_c2_audio.xml \
+    frameworks/av/media/libstagefright/data/media_codecs_google_c2_video.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_google_c2_video.xml
 
 # Audio
 PRODUCT_COPY_FILES += \
@@ -26,18 +31,46 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/sensors/hals.conf:$(TARGET_COPY_OUT_VENDOR)/etc/sensors/hals.conf
 
+# Device State
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/devicestate/device_state_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/devicestate/device_state_configuration.xml
+
+# Display layout
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/display/display_layout_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/displayconfig/display_layout_configuration.xml \
+    $(LOCAL_PATH)/configs/display/display_settings.xml:$(TARGET_COPY_OUT_VENDOR)/etc/display_settings.xml
+
+# Input
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/keylayout/gpio-keys.kl:$(TARGET_COPY_OUT_VENDOR)/usr/keylayout/gpio-keys.kl \
+    $(LOCAL_PATH)/configs/keylayout/gpio-keys.idc:$(TARGET_COPY_OUT_VENDOR)/usr/idc/gpio-keys.idc \
+    $(LOCAL_PATH)/configs/idc/touch_sub_dev.idc:$(TARGET_COPY_OUT_VENDOR)/usr/idc/touch_sub_dev.idc \
+    $(LOCAL_PATH)/configs/idc/touch_sub_dex_dev.idc:$(TARGET_COPY_OUT_VENDOR)/usr/idc/touch_sub_dex_dev.idc
+
+# Input port associations
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/input/input-port-associations.xml:$(TARGET_COPY_OUT_VENDOR)/etc/input-port-associations.xml
+
 $(call soong_config_set,LGE_FINGERPRINT_HAL,TARGET_HAS_EGISTEC_UDFPS,true)
 
 # Overlays
 PRODUCT_PACKAGES += \
-    ApertureOverlayCaymanlm \
-    FrameworksResOverlayCaymanlm \
-    SettingsOverlayCaymanlm \
-    SystemUIOverlayCaymanlm
+    ApertureOverlayWinglm \
+    FrameworksResOverlayWinglm \
+    SettingsOverlayWinglm \
+    SystemUIOverlayWinglm
 
 # Soong namespace
 PRODUCT_SOONG_NAMESPACES += \
     $(LOCAL_PATH)
 
 # Inherit from vendor makefiles.
-$(call inherit-product, vendor/lge/caymanlm/caymanlm-vendor.mk)
+$(call inherit-product, vendor/lge/winglm/winglm-vendor.mk)
+
+PRODUCT_SYSTEM_PROPERTIES += \
+    ro.recovery.ui.brightness_file=/sys/class/backlight/panel0-backlight/brightness \
+    ro.recovery.ui.max_brightness_file=/sys/class/backlight/panel0-backlight/max_brightness \
+    ro.recovery.ui.brightness_normal_percent=50 \
+    ro.recovery.ui.brightness_dimmed_percent=25
+
+

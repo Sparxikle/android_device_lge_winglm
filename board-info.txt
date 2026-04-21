@@ -1,1 +1,1 @@
-require board=lito|sm7250|caymanlm
+require board=lito|sm7250|winglm

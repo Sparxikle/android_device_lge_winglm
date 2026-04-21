@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<device-state-config>
+    <device-state>
+        <identifier>0</identifier>
+        <name>CLOSED</name>
+        <conditions>
+            <lid-switch>
+                <open>false</open>
+            </lid-switch>
+        </conditions>
+    </device-state>
+    <device-state>
+        <identifier>1</identifier>
+        <name>OPENED</name>
+        <conditions>
+            <lid-switch>
+                <open>true</open>
+            </lid-switch>
+        </conditions>
+    </device-state>
+</device-state-config>

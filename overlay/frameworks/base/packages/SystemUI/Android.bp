@@ -4,6 +4,6 @@
 //
 
 runtime_resource_overlay {
-    name: "SystemUIOverlayCaymanlm",
+    name: "SystemUIOverlayWinglm",
     vendor: true,
 }

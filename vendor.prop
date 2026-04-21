@@ -1,11 +1,26 @@
 # Camera
 ro.vendor.lge.logical.camera=2
-ro.vendor.lge.aux.camera=2
-ro.vendor.lge.physical.camera=5
+ro.vendor.lge.aux.camera=1
+ro.vendor.lge.physical.camera=4
+
+# Display
+ro.product.lge.swivelable=true
+ro.vendor.lge.feature.multi_display_type=swivel
+ro.vendor.lge.feature.multi_display=true
+debug.sf.enable_hwc_vds=1
+persist.vendor.display.secondary_internal=1
+vendor.display.is_internal_display=0,1
+
+# Motor (Pop-up camera)
+ro.product.lge.support.motor=true
 
 # Miscellaneous
-ro.vendor.lge.build.target_operator=LAO
-ro.vendor.lge.build.target_country=COM
+ro.vendor.lge.build.target_operator=LGU
+ro.vendor.lge.build.target_country=KR
 ro.vendor.lge.capp_cupss.rootdir=/product
 ro.vendor.lge.capp_cupss.op.dir=/product
-ro.vendor.lge.swversion=G90040d
+ro.vendor.lge.swversion=F100N40e
+
+# FastRPC
+vendor.fastrpc.crypto.enabled=1
+vendor.fastrpc.fallback=false

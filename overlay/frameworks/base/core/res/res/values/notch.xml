@@ -39,5 +39,12 @@
 
          @see https://www.w3.org/TR/SVG/paths.html#PathData
          -->
-    <string translatable="false" name="config_mainBuiltInDisplayCutout">M -70,0 L -70,80 L 70,80 L 70,0 Z</string>
+
+        <string translatable="false" name="config_mainBuiltInDisplayCutout"></string>
+
+        <string translatable="false" name="config_secondaryBuiltInDisplayCutout"></string>
+
+        <dimen name="rounded_corner_radius">13px</dimen>
+        <dimen name="rounded_corner_radius_top">13px</dimen>
+        <dimen name="rounded_corner_radius_bottom">13px</dimen>
 </resources>
