@@ -152,8 +152,6 @@ vendor/lib64/libremosaic_wrapper.so
 vendor/lib64/libsymphony-cpu.so
 vendor/lib64/vendor.qti.hardware.camera.postproc@1.0-service-impl.so
 vendor/lib64/vendor.qti.hardware.seccam@1.0.so
-vendor/lib/vendor.lge.hardware.motor@1.0.so
-vendor/lib64/vendor.lge.hardware.motor@1.0.so
 vendor/lib64/libsns_device_context_prox.so
 vendor/lib/libarcsoft_dualcam_portraitlighting.so
 vendor/lib/libarcsoft_object_tracking.so
@@ -609,6 +607,15 @@ vendor/etc/camera/smartcam/9_2_L_smartcam_food.dat
 vendor/etc/camera/smartcam/9_smartcam_food.dat
 vendor/etc/camera/vnr/SJ_VideoNR_LUT.bin
 
+# LG Camera Motor
+vendor/bin/hw/vendor.lge.hardware.sensors.devicecontext@1.0-service
+vendor/etc/init/vendor.lge.hardware.sensors.devicecontext@1.0-service.rc
+vendor/etc/vintf/manifest/vendor.lge.hardware.sensors.devicecontext@1.0-service.xml
+vendor/lib64/hw/vendor.lge.hardware.sensors.devicecontext@1.0-impl.so
+vendor/lib64/vendor.lge.hardware.sensors.devicecontext@1.0.so
+vendor/lib/vendor.lge.hardware.motor@1.0.so
+vendor/lib64/vendor.lge.hardware.motor@1.0.so
+
 # Camera firmware
 vendor/firmware/CAMERA_ICP.elf
 
@@ -810,3 +817,25 @@ vendor/etc/wifi/GLOBAL/bdwlan.bin;SYMLINK=vendor/firmware/wlan/qca_cld/bdwlan.bi
 vendor/etc/wifi/GLOBAL/bdwlan_ch0.bin;SYMLINK=vendor/firmware/wlan/qca_cld/bdwlan_ch0.bin
 vendor/etc/wifi/GLOBAL/bdwlan_ch1.bin;SYMLINK=vendor/firmware/wlan/qca_cld/bdwlan_ch1.bin
 vendor/bin/immvibed
+
+# Media OMX
+vendor/bin/hw/android.hardware.media.omx@1.0-service
+vendor/bin/mm-vidc-omx-test
+vendor/lib/libmm-omxcore.so
+vendor/lib64/libmm-omxcore.so
+
+# OMX dependencies
+vendor/lib/libfastcrc.so
+vendor/lib/libqdMetaData.so
+vendor/lib64/libqdMetaData.so
+vendor/lib/libstreamparser.so
+vendor/lib/libvideoutils.so
+
+vendor/etc/seccomp_policy/mediacodec.policy
+vendor/etc/media_codecs_vendor_v1.xml
+vendor/etc/media_codecs_vendor_v2.xml
+vendor/etc/media_codecs_vendor_v3.xml
+vendor/etc/media_codecs_performance_v1.xml
+vendor/etc/media_codecs_performance_v2.xml
+vendor/etc/media_codecs_performance_v3.xml
+vendor/etc/media_codecs_lge.xml

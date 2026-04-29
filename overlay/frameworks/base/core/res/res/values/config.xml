@@ -17,8 +17,6 @@
 */
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <!-- Whether device has a notch -->
-    <bool name="config_haveNotch">false</bool>
 
     <!-- List of biometric sensors on the device, in decreasing strength. Consumed by AuthService
          when registering authenticators with BiometricService. Format must be ID:Modality:Strength,
@@ -35,21 +33,24 @@
         <item>97</item>  <!-- Radius -->
     </integer-array>
 
+    <bool name="config_supportsBubble">true</bool>
+
     <!-- Type of the udfps long press sensor. Empty if long press is not supported. -->
     <string name="config_dozeUdfpsLongPressSensorType" translatable="false">org.lineageos.sensor.udfps</string>
 
+    <bool name="config_matchSecondaryInternalDisplaysOrientationToReverseDefaultDisplay">false</bool>
+    <bool name="config_supportsMultiDisplay">true</bool>
     <bool name="config_supportsConcurrentInternalDisplays">true</bool>
     <string name="config_rearDisplayPhysicalAddress">130</string>
     <bool name="config_localDisplaysMirrorContent">false</bool>
     <bool name="config_perDisplayFocusEnabled">true</bool>
-    <bool name="config_windowShowNavigationBarOnSecondaryDisplays">true</bool>
-    <bool name="config_supportsSystemDecorationsOnSecondaryDisplays">true</bool>
-    <bool name="config_supportsActivitiesOnSecondaryDisplays">true</bool>
+    <bool name="config_supportsSystemDecorsOnSecondaryDisplays">true</bool>
 
     <!-- Lawnchair for secondary display -->
     <string name="config_secondaryHomePackage" translatable="false">com.leo.winghome</string>
     <bool name="config_useSystemProvidedLauncherForSecondary">true</bool>
-    <integer-array name="config_deviceStatesOnWhichToSleep">
+
+  <integer-array name="config_deviceStatesOnWhichToSleep">
         <item>0</item>
     </integer-array>
 
