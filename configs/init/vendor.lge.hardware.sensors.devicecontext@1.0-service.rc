@@ -1,0 +1,4 @@
+service vendor.devicecontext-lge-1-0 /vendor/bin/hw/vendor.lge.hardware.sensors.devicecontext@1.0-service
+    class hal
+    user system
+    group system

@@ -1,0 +1,6 @@
+# Allow CamX to call the LG Motor HAL over Binder
+binder_call(hal_camera_default, hal_motor_default)
+binder_call(hal_motor_default, hal_camera_default)
+
+# Allow CamX to find the motor service in hwservicemanager
+allow hal_camera_default hal_lge_motor_hwservice:hwservice_manager find;
