@@ -1,7 +1,7 @@
-<?xml version='1.0' encoding='utf-8' standalone='yes' ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <display-settings>
-    <config identifier="1" />
-    <display name="port:130"
-             shouldShowSystemDecors="true"
+    <config identifier="0" />
+    <display name="local:4630946299134858882" 
+             shouldShowSystemDecors="true" 
              shouldShowIme="true" />
 </display-settings>

@@ -47,8 +47,8 @@
     <bool name="config_supportsSystemDecorsOnSecondaryDisplays">true</bool>
 
     <!-- Lawnchair for secondary display -->
-    <string name="config_secondaryHomePackage" translatable="false">com.leo.winghome</string>
-    <bool name="config_useSystemProvidedLauncherForSecondary">true</bool>
+    <string name="config_secondaryHomePackage" translatable="false">com.android.launcher3</string>
+    <bool name="config_useSystemProvidedLauncherForSecondary">false</bool>
 
   <integer-array name="config_deviceStatesOnWhichToSleep">
         <item>0</item>

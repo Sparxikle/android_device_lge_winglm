@@ -34,9 +34,19 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/display/display_layout_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/displayconfig/display_layout_configuration.xml \
     $(LOCAL_PATH)/configs/display/display_settings.xml:$(TARGET_COPY_OUT_VENDOR)/etc/display_settings.xml
+
 # Init Script
 PRODUCT_COPY_FILES += \
     device/lge/winglm/configs/init/vendor.lge.hardware.sensors.devicecontext@1.0-service.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/vendor.lge.hardware.sensors.devicecontext@1.0-service.rc
+
+# Custom Wing fixes
+PRODUCT_PACKAGES += \
+		WingParts
+
+PRODUCT_COPY_FILES += \
+    device/lge/winglm/audio/cam_popup_open.ogg:$(TARGET_COPY_OUT_PRODUCT)/media/audio/ui/cam_popup_open.ogg \
+    device/lge/winglm/audio/cam_popup_close.ogg:$(TARGET_COPY_OUT_PRODUCT)/media/audio/ui/cam_popup_close.ogg
+
 
 # Input
 PRODUCT_COPY_FILES += \

@@ -2,16 +2,19 @@
 <layouts>
     <layout>
         <state>0</state>
-        <display enabled="true" defaultDisplay="true" displayGroup="">
+        <display enabled="true" defaultDisplay="true">
             <port>129</port>
+        </display>
+        <display enabled="false">
+            <port>130</port>
         </display>
     </layout>
     <layout>
         <state>1</state>
-        <display enabled="true" defaultDisplay="true" displayGroup="">
+        <display enabled="true" defaultDisplay="true">
             <port>129</port>
         </display>
-        <display enabled="true" displayGroup="">
+        <display enabled="true" displayGroup="secondary">
             <port>130</port>
         </display>
     </layout>

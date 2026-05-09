@@ -1,3 +1,2 @@
 # Allow flags_health_check to read camera properties
 allow flags_health_check camera2_extensions_prop:file { open read getattr map };
-allow flags_health_check camera_calibration_prop:file { open read getattr };

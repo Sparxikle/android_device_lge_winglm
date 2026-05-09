@@ -1,0 +1,27 @@
+android_app {
+    name: "WingParts",
+    srcs: ["src/**/*.java"],
+    certificate: "platform",
+    platform_apis: true,
+    privileged: true,
+    system_ext_specific: true,
+    static_libs: [
+        "androidx.core_core",
+    ],
+    jni_libs: ["libwingmotor_jni"],
+    optimize: {
+        enabled: false,
+    },
+}
+
+cc_library_shared {
+    name: "libwingmotor_jni",
+    srcs: ["jni/motor_jni.cpp"],
+    header_libs: ["jni_headers"],
+    shared_libs: [
+        "liblog",
+        "libcutils",
+        "libutils",
+    ],
+    system_ext_specific: true,
+}
