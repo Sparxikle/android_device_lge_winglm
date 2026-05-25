@@ -19,6 +19,7 @@ from extract_utils.fixups_lib import (
 import extract_utils.tools
 
 namespace_imports = [
+    'hardware/lge',
     'vendor/lge/sm7250-common',
     'vendor/qcom/opensource/display',
     'hardware/qcom-caf/sm8250'
@@ -26,6 +27,9 @@ namespace_imports = [
 
 
 blob_fixups: blob_fixups_user_type = {
+    'vendor/lib64/libets_teeclient_v2.so': blob_fixup()
+        .add_needed('libets_teeclient_v2_shim.so')
+        .remove_needed('libfpsph.so'),
     'vendor/lib64/liblgdnnsnpe.so': blob_fixup()
         .replace_needed('libstdc++.so', 'libstdc++_vendor.so'),
     'vendor/lib64/vendor.qti.hardware.camera.postproc@1.0-service-impl.so': blob_fixup()

@@ -16,6 +16,7 @@
         </display>
         <display enabled="true" displayGroup="secondary">
             <port>130</port>
+            <leadDisplayAddress>129</leadDisplayAddress>
         </display>
     </layout>
 </layouts>

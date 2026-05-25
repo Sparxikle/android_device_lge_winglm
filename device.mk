@@ -21,6 +21,7 @@ PRODUCT_COPY_FILES += \
 # Fingerprint
 PRODUCT_PACKAGES += \
     android.hardware.biometrics.fingerprint@2.3-service.lge \
+    libets_teeclient_v2_shim \
     sensors.lge
 
 PRODUCT_COPY_FILES += \
@@ -61,7 +62,7 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/input/input-port-associations.xml:$(TARGET_COPY_OUT_VENDOR)/etc/input-port-associations.xml
 
-$(call soong_config_set,LGE_FINGERPRINT_HAL,TARGET_HAS_EGISTEC_UDFPS,true)
+$(call soong_config_set_bool,LGE_FINGERPRINT_HAL,TARGET_HAS_EGISTEC_UDFPS,true)
 
 # Overlays
 PRODUCT_PACKAGES += \

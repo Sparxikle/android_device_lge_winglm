@@ -38,7 +38,8 @@
     <!-- Type of the udfps long press sensor. Empty if long press is not supported. -->
     <string name="config_dozeUdfpsLongPressSensorType" translatable="false">org.lineageos.sensor.udfps</string>
 
-    <bool name="config_matchSecondaryInternalDisplaysOrientationToReverseDefaultDisplay">false</bool>
+    <bool name="config_matchSecondaryInternalDisplaysOrientationToReverseDefaultDisplay">true</bool>
+    <integer name="config_secondaryInternalDisplayRotationOffset">1</integer>
     <bool name="config_supportsMultiDisplay">true</bool>
     <bool name="config_supportsConcurrentInternalDisplays">true</bool>
     <string name="config_rearDisplayPhysicalAddress">130</string>
@@ -58,5 +59,36 @@
     <integer-array name="config_deviceStatesOnWhichToWakeUp">
         <item>1</item>
     </integer-array>
+
+  <integer-array name="config_screenBrightnessBacklight">
+    <item>10</item>
+    <item>35</item>
+    <item>84</item>
+    <item>85</item>
+    <item>122</item>
+    <item>124</item>
+    <item>134</item>
+    <item>143</item>
+    <item>150</item>
+    <item>168</item>
+    <item>204</item>
+    <item>255</item>
+  </integer-array>
+
+  <array name="config_screenBrightnessNits">
+    <item>3.5</item>
+    <item>5.76</item>
+    <item>39.4</item>
+    <item>40.1</item>
+    <item>90.1</item>
+    <item>94.0</item>
+    <item>110.1</item>
+    <item>124.9</item>
+    <item>137.8</item>
+    <item>187.2</item>
+    <item>285.5</item>
+    <item>474.8</item>
+
+  </array>
 
 </resources>
