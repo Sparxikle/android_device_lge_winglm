@@ -24,3 +24,8 @@ ro.vendor.lge.swversion=F100N40e
 # FastRPC
 vendor.fastrpc.crypto.enabled=1
 vendor.fastrpc.fallback=false
+
+#system props
+
+# Voice Assistant
+ro.opa.device_model_id=time-kr-deviceaction-time-7nfybr

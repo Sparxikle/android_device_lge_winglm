@@ -1,0 +1,2 @@
+#eBPF override for legacy kernels
+ro.bpf.kver_override=5.10.239

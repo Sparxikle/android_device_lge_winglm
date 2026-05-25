@@ -35,6 +35,8 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/display/display_layout_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/displayconfig/display_layout_configuration.xml \
     $(LOCAL_PATH)/configs/display/display_settings.xml:$(TARGET_COPY_OUT_VENDOR)/etc/display_settings.xml
 
+$(call soong_config_set_bool,stagefright,target_disable_thumbnail_block_model,true)
+
 # Init Script
 PRODUCT_COPY_FILES += \
     device/lge/winglm/configs/init/vendor.lge.hardware.sensors.devicecontext@1.0-service.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/vendor.lge.hardware.sensors.devicecontext@1.0-service.rc
