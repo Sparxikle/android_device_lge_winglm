@@ -5,4 +5,5 @@
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/lineage_winglm.mk
+    $(LOCAL_DIR)/lineage_winglm.mk \
+		$(LOCAL_DIR)/twrp_winglm.mk
