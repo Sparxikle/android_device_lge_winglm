@@ -1,0 +1,19 @@
+aidl_interface {
+    name: "vendor.wing.hardware.motor",
+    vendor_available: true,
+    owner: "lge",
+    srcs: ["vendor/wing/hardware/motor/*.aidl"],
+    stability: "vintf",
+    backend: {
+        cpp: {
+            enabled: false,
+        },
+        java: {
+            sdk_version: "module_current",
+        },
+        ndk: {
+            enabled: true,
+        },
+    },
+    frozen: false,
+}

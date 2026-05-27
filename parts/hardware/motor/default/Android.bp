@@ -1,0 +1,30 @@
+cc_binary {
+    name: "vendor.wing.hardware.motor-service",
+    vendor: true,
+    relative_install_path: "hw",
+    init_rc: ["vendor.wing.hardware.motor-service.rc"],
+    vintf_fragments: ["vendor.wing.hardware.motor-service.xml"],
+    srcs: [
+        "Motor.cpp",
+        "main.cpp",
+    ],
+    shared_libs: [
+        "libbase",
+        "libbinder_ndk",
+        "libutils",
+        "libandroid",
+        "liblog",
+        "vendor.wing.hardware.motor-V1-ndk",
+    ],
+    header_libs: [
+        "libandroid_headers",
+        "libandroid_sensor_headers",
+    ],
+}
+
+cc_binary {
+    name: "motor_diag",
+    vendor: true,
+    srcs: ["motor_diag.c"],
+    cflags: ["-Wall", "-Werror"],
+}

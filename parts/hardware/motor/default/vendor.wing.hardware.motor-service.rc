@@ -1,0 +1,5 @@
+service vendor.wing.hardware.motor-service /vendor/bin/hw/vendor.wing.hardware.motor-service
+    class hal
+    user system
+    group system
+    shutdown critical
