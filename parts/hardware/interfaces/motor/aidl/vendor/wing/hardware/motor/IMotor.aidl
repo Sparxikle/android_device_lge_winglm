@@ -1,7 +1,5 @@
 package vendor.wing.hardware.motor;
 
-import vendor.wing.hardware.motor.IMotorCallback;
-
 @VintfStability
 interface IMotor {
     /**
@@ -21,11 +19,7 @@ interface IMotor {
 
     /**
      * Get the current motor status/max PPS.
+     * Useful for the 0xDC06 handshake.
      */
     int getStatus();
-
-    /**
-     * Register a callback for motor events (like free-fall).
-     */
-    void registerCallback(in IMotorCallback callback);
 }

@@ -1,0 +1,23 @@
+type hal_motor_wing, domain;
+type hal_motor_wing_exec, exec_type, vendor_file_type, file_type;
+
+# Allow init to start the service and transition to its domain
+init_daemon_domain(hal_motor_wing)
+
+# Allow the service to register with ServiceManager
+add_service(hal_motor_wing, wing_motor_service)
+
+# Allow the service to access its own hardware node
+allow hal_motor_wing motor_device:chr_file rw_file_perms;
+
+# Allow reading sysfs nodes for motor state
+allow hal_motor_wing sysfs:dir search;
+allow hal_motor_wing sysfs:file r_file_perms;
+
+# Allow binder communication
+binder_use(hal_motor_wing)
+binder_call(hal_motor_wing, servicemanager)
+binder_call(hal_motor_wing, system_app)
+
+# Allow properties
+set_prop(hal_motor_wing, wing_motor_prop)

@@ -44,7 +44,8 @@ PRODUCT_COPY_FILES += \
 
 # Custom Wing fixes
 PRODUCT_PACKAGES += \
-		WingParts
+		WingParts \
+		vendor.wing.hardware.motor-service \
 
 PRODUCT_COPY_FILES += \
     device/lge/winglm/audio/cam_popup_open.ogg:$(TARGET_COPY_OUT_PRODUCT)/media/audio/ui/cam_popup_open.ogg \

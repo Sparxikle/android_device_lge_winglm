@@ -9,7 +9,8 @@ using aidl::vendor::wing::hardware::motor::Motor;
 int main(int argc, char** argv) {
     android::base::InitLogging(argv, android::base::LogdLogger());
     
-    ABinderProcess_setThreadPoolMaxThreadCount(0);
+    // Increase thread pool to handle concurrent calls
+    ABinderProcess_setThreadPoolMaxThreadCount(2);
     std::shared_ptr<Motor> motor = ndk::SharedRefBase::make<Motor>();
 
     const std::string instance = std::string() + Motor::descriptor + "/default";

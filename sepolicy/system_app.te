@@ -1,3 +1,7 @@
 # Allow WingParts to read lid switch input device
 allow system_app input_device:chr_file { read open ioctl };
 allow system_app input_device:dir { search read };
+
+# Allow WingParts to find and call the motor service
+allow system_app wing_motor_service:service_manager find;
+binder_call(system_app, hal_motor_wing)

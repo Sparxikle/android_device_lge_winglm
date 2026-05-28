@@ -12,19 +12,6 @@ cc_binary {
         "libbase",
         "libbinder_ndk",
         "libutils",
-        "libandroid",
-        "liblog",
         "vendor.wing.hardware.motor-V1-ndk",
     ],
-    header_libs: [
-        "libandroid_headers",
-        "libandroid_sensor_headers",
-    ],
-}
-
-cc_binary {
-    name: "motor_diag",
-    vendor: true,
-    srcs: ["motor_diag.c"],
-    cflags: ["-Wall", "-Werror"],
 }

@@ -23,5 +23,4 @@ interface IMotor {
   void moveDown();
   void stop();
   int getStatus();
-  void registerCallback(in vendor.wing.hardware.motor.IMotorCallback callback);
 }

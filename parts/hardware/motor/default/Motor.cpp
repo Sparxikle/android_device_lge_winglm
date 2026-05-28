@@ -2,8 +2,6 @@
 #include <android-base/file.h>
 #include <android-base/properties.h>
 #include <android-base/strings.h>
-#include <android/looper.h>
-#include <cmath>
 
 #define MOTOR_UP          0xDC01
 #define MOTOR_DOWN        0xDC02
@@ -13,85 +11,14 @@
 #define STATE_PROP        "persist.vendor.wing.motor.state"
 #define DIR_SYSFS         "/sys/devices/platform/soc/soc:lge,motor-stspin220/motor_dir"
 
-#define FREEFALL_THRESHOLD 2.5f
-#define FALL_TICKS_REQUIRED 2
-
 namespace aidl {
 namespace vendor {
 namespace wing {
 namespace hardware {
 namespace motor {
 
-Motor::Motor() : mIsUp(false), mInitialized(false), mSensorThreadRunning(false), 
-                 mSensorManager(nullptr), mAccelSensor(nullptr), mSensorEventQueue(nullptr) {
+Motor::Motor() : mIsUp(false), mInitialized(false) {
     initializeHardware();
-    startSensorThread();
-}
-
-Motor::~Motor() {
-    mSensorThreadRunning = false;
-    if (mSensorThread.joinable()) {
-        mSensorThread.join();
-    }
-}
-
-void Motor::startSensorThread() {
-    mSensorManager = ASensorManager_getInstanceForPackage("vendor.wing.hardware.motor");
-    if (!mSensorManager) {
-        LOG(ERROR) << "Failed to get ASensorManager instance";
-        return;
-    }
-
-    mAccelSensor = ASensorManager_getDefaultSensor(mSensorManager, ASENSOR_TYPE_ACCELEROMETER);
-    if (!mAccelSensor) {
-        LOG(ERROR) << "Failed to get Accelerometer sensor";
-        return;
-    }
-
-    mSensorThreadRunning = true;
-    mSensorThread = std::thread(&Motor::sensorLoop, this);
-}
-
-void Motor::sensorLoop() {
-    ALooper* looper = ALooper_prepare(ALOOPER_PREPARE_ALLOW_NON_CALLBACKS);
-    mSensorEventQueue = ASensorManager_createEventQueue(mSensorManager, looper, 0, nullptr, nullptr);
-    ASensorEventQueue_enableSensor(mSensorEventQueue, mAccelSensor);
-    ASensorEventQueue_setEventRate(mSensorEventQueue, mAccelSensor, 10000); // 100Hz
-
-    ASensorEvent event;
-    int fall_ticks = 0;
-
-    while (mSensorThreadRunning) {
-        if (ALooper_pollOnce(500, nullptr, nullptr, nullptr) == ALOOPER_POLL_WAKE) continue;
-
-        while (ASensorEventQueue_getEvents(mSensorEventQueue, &event, 1) > 0) {
-            float x = event.acceleration.x;
-            float y = event.acceleration.y;
-            float z = event.acceleration.z;
-            float g = std::sqrt(x*x + y*y + z*z);
-
-            if (g < FREEFALL_THRESHOLD) {
-                fall_ticks++;
-                if (fall_ticks >= FALL_TICKS_REQUIRED && mIsUp) {
-                    LOG(ERROR) << "NATIVE FALL DETECTED! Emergency Retract!";
-                    executeIoctl(MOTOR_DOWN);
-                    mIsUp = false;
-                    android::base::SetProperty(STATE_PROP, "down");
-                    
-                    std::lock_guard<std::mutex> lock(mCallbackLock);
-                    if (mCallback) {
-                        mCallback->onNotifyFall();
-                    }
-                    fall_ticks = 0;
-                }
-            } else {
-                fall_ticks = 0;
-            }
-        }
-    }
-    
-    ASensorEventQueue_disableSensor(mSensorEventQueue, mAccelSensor);
-    ASensorManager_destroyEventQueue(mSensorManager, mSensorEventQueue);
 }
 
 void Motor::initializeHardware() {
@@ -100,47 +27,75 @@ void Motor::initializeHardware() {
 
     LOG(INFO) << "Initializing Motor HAL hardware...";
 
+    // Wait for the device node to become available (up to 10 seconds)
     while (retry_count < 20) {
         fd = open(DEVICE_NODE, O_RDWR);
         if (fd >= 0) break;
+
+        LOG(WARNING) << "Failed to open " << DEVICE_NODE << " (Attempt " << retry_count + 1 << "/20). Retrying in 500ms...";
         usleep(500000);
         retry_count++;
     }
 
-    if (fd < 0) return;
+    if (fd < 0) {
+        LOG(ERROR) << "Could not open " << DEVICE_NODE << " after 10 seconds. Hardware might be missing.";
+        return;
+    }
 
     int32_t max_pps = 0;
     if (ioctl(fd, MOTOR_GET_MAX_PPS, &max_pps) >= 0) {
-        LOG(INFO) << "!! SAFETY !! Performing forced retraction on startup.";
-        if (ioctl(fd, MOTOR_DOWN, 0) >= 0) {
-            struct pollfd pfd = {.fd = fd, .events = POLLIN};
-            if (poll(&pfd, 1, 5000) > 0) {
-                mIsUp = false;
-                android::base::SetProperty(STATE_PROP, "down");
+        LOG(INFO) << "Hardware Handshake successful. max_pps=" << max_pps;
+
+        // Only retract if the system thinks the camera is currently UP.
+        // This prevents annoying motor movement on every normal boot.
+        std::string state = android::base::GetProperty(STATE_PROP, "down");
+        if (state == "up") {
+            LOG(INFO) << "!! SAFETY !! persist.state is 'up'. Performing safety retraction.";
+            if (ioctl(fd, MOTOR_DOWN, 0) >= 0) {
+                struct pollfd pfd = {.fd = fd, .events = POLLIN};
+                int poll_ret = poll(&pfd, 1, 5000);
+                if (poll_ret > 0) {
+                    LOG(INFO) << "Safety retraction successful.";
+                    mIsUp = false;
+                    android::base::SetProperty(STATE_PROP, "down");
+                }
             }
+        } else {
+            LOG(INFO) << "Motor state is already 'down' in persist. Skipping startup retraction.";
+            mIsUp = false;
         }
+
         mInitialized = true;
+    } else {
+        LOG(ERROR) << "Hardware Handshake failed.";
     }
     close(fd);
 }
 
+
 bool Motor::executeIoctl(uint32_t cmd) {
     int fd = open(DEVICE_NODE, O_RDWR);
-    if (fd < 0) return false;
+    if (fd < 0) {
+        LOG(ERROR) << "Failed to open " << DEVICE_NODE;
+        return false;
+    }
 
     if (ioctl(fd, cmd, 0) < 0) {
+        PLOG(ERROR) << "ioctl 0x" << std::hex << cmd << " failed";
         close(fd);
         return false;
     }
 
     struct pollfd pfd = {.fd = fd, .events = POLLIN};
     if (poll(&pfd, 1, 5000) > 0) {
+        LOG(INFO) << "Motor movement completed.";
         char buf[16];
         read(fd, buf, sizeof(buf));
         close(fd);
         return true;
     }
 
+    LOG(ERROR) << "Motor movement timeout!";
     close(fd);
     return false;
 }
@@ -180,12 +135,6 @@ ndk::ScopedAStatus Motor::getStatus(int32_t* _aidl_return) {
     }
     ioctl(fd, MOTOR_GET_MAX_PPS, _aidl_return);
     close(fd);
-    return ndk::ScopedAStatus::ok();
-}
-
-ndk::ScopedAStatus Motor::registerCallback(const std::shared_ptr<IMotorCallback>& callback) {
-    std::lock_guard<std::mutex> lock(mCallbackLock);
-    mCallback = callback;
     return ndk::ScopedAStatus::ok();
 }
 

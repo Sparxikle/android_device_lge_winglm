@@ -18,6 +18,9 @@
 
 package vendor.wing.hardware.motor;
 @VintfStability
-interface IMotorCallback {
-  void onNotifyFall();
+interface IMotor {
+  void moveUp();
+  void moveDown();
+  void stop();
+  int getStatus();
 }
