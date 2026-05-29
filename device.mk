@@ -70,7 +70,8 @@ PRODUCT_PACKAGES += \
     ApertureOverlayWinglm \
     FrameworksResOverlayWinglm \
     SettingsOverlayWinglm \
-    SystemUIOverlayWinglm
+    SystemUIOverlayWinglm \
+    TargetWifiOverlayWinglm
 
 # Soong namespace
 PRODUCT_SOONG_NAMESPACES += \
