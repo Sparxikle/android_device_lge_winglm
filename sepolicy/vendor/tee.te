@@ -1,0 +1,5 @@
+# Allow tee to search LGE persist data directory
+allow tee persist_lg_data_file:dir search;
+
+# Allow tee to read Egis calibration files in persist-lg
+r_dir_file(tee, persist_lg_fingerprint_file)

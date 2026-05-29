@@ -1,0 +1,6 @@
+# Allow tee (qseecomd) to read and search Egis calibration on unlabeled persist-lg partition [1, 2]
+allow tee unlabeled:dir { read open search getattr };
+allow tee unlabeled:file { read open getattr };
+
+# Allow fingerprint HAL to access QSEECOM device for TEE communication [1, 2]
+allow hal_fingerprint_default tee_device:chr_file { read write open ioctl };

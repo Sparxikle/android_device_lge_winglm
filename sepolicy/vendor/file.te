@@ -1,0 +1,3 @@
+# LGE Persist data partition types
+type persist_lg_data_file, file_type;
+type persist_lg_fingerprint_file, file_type;

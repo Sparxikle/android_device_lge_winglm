@@ -1,3 +1,10 @@
 /vendor/bin/hw/vendor\.lge\.hardware\.motor@1\.0-service-popupcam    u:object_r:hal_motor_default_exec:s0
 /vendor/bin/hw/vendor\.wing\.hardware\.motor-service          u:object_r:hal_motor_wing_exec:s0
 /dev/stdrv                                                   u:object_r:motor_device:s0
+
+# Label the Egis fingerprint sensor node
+/dev/esfp0                         u:object_r:fingerprint_device:s0
+
+# LGE Persist partition and Egis calibration folder
+/mnt/vendor/persist-lg(/.*)?       u:object_r:persist_lg_data_file:s0
+/mnt/vendor/persist-lg/egis(/.*)?  u:object_r:persist_lg_fingerprint_file:s0

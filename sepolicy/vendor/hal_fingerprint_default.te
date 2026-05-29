@@ -1,0 +1,12 @@
+# Allow fingerprint HAL to search mnt_vendor_file
+allow hal_fingerprint_default mnt_vendor_file:dir search;
+
+# Allow fingerprint HAL to read LGE persist data and fingerprint directories
+r_dir_file(hal_fingerprint_default, persist_lg_data_file)
+r_dir_file(hal_fingerprint_default, persist_lg_fingerprint_file)
+
+# Allow fingerprint HAL to access QSEECOM device and fingerprint nodes
+allow hal_fingerprint_default {
+    fingerprint_device
+    tee_device
+}:chr_file rw_file_perms;
