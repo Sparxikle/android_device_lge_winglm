@@ -12,6 +12,9 @@
     <device-state>
         <identifier>1</identifier>
         <name>OPENED</name>
+        <properties>
+            <property>com.android.server.policy.PROPERTY_FEATURE_DUAL_DISPLAY_INTERNAL_DEFAULT</property>
+        </properties>
         <conditions>
             <lid-switch>
                 <open>true</open>

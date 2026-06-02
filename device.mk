@@ -86,4 +86,7 @@ PRODUCT_SYSTEM_PROPERTIES += \
     ro.recovery.ui.brightness_normal_percent=50 \
     ro.recovery.ui.brightness_dimmed_percent=25
 
+PRODUCT_PACKAGES += \
+    LineageSDKOverlayWinglm
+
 

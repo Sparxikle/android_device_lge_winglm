@@ -38,57 +38,72 @@
     <!-- Type of the udfps long press sensor. Empty if long press is not supported. -->
     <string name="config_dozeUdfpsLongPressSensorType" translatable="false">org.lineageos.sensor.udfps</string>
 
-    <bool name="config_matchSecondaryInternalDisplaysOrientationToReverseDefaultDisplay">true</bool>
-    <integer name="config_secondaryInternalDisplayRotationOffset">1</integer>
+    <bool name="config_matchSecondaryInternalDisplaysOrientationToReverseDefaultDisplay">false</bool>
+    <integer name="config_secondaryInternalDisplayRotationOffset">0</integer>
     <bool name="config_supportsMultiDisplay">true</bool>
     <bool name="config_supportsConcurrentInternalDisplays">true</bool>
     <string name="config_rearDisplayPhysicalAddress">130</string>
     <bool name="config_localDisplaysMirrorContent">false</bool>
     <bool name="config_perDisplayFocusEnabled">true</bool>
+    <bool name="config_navBarCanMove">false</bool>
     <bool name="config_supportsSystemDecorsOnSecondaryDisplays">true</bool>
+
+    <string-array name="config_displayUniqueIdArray" translatable="false">
+        <item>local:4630946736071014273</item>
+        <item>local:4630946299134858882</item>
+    </string-array>
 
     <!-- Lawnchair for secondary display -->
     <string name="config_secondaryHomePackage" translatable="false">com.android.launcher3</string>
-    <bool name="config_useSystemProvidedLauncherForSecondary">false</bool>
+    <bool name="config_useSystemProvidedLauncherForSecondary">true</bool>
 
   <integer-array name="config_deviceStatesOnWhichToSleep">
         <item>0</item>
     </integer-array>
 
     <!-- Wake up display on device state 1 (swivel open) -->
-    <integer-array name="config_deviceStatesOnWhichToWakeUp">
+    <integer-array name="config_deviceStatesOnWhichToWake_Up">
         <item>1</item>
     </integer-array>
 
-  <integer-array name="config_screenBrightnessBacklight">
-    <item>10</item>
-    <item>35</item>
-    <item>84</item>
-    <item>85</item>
-    <item>122</item>
-    <item>124</item>
-    <item>134</item>
-    <item>143</item>
-    <item>150</item>
-    <item>168</item>
-    <item>204</item>
-    <item>255</item>
-  </integer-array>
+    <integer-array name="config_concurrentDisplayDeviceStates">
+        <item>1</item>
+    </integer-array>
 
-  <array name="config_screenBrightnessNits">
-    <item>3.5</item>
-    <item>5.76</item>
-    <item>39.4</item>
-    <item>40.1</item>
-    <item>90.1</item>
-    <item>94.0</item>
-    <item>110.1</item>
-    <item>124.9</item>
-    <item>137.8</item>
-    <item>187.2</item>
-    <item>285.5</item>
-    <item>474.8</item>
+    <bool name="config_enableLockScreenRotation">true</bool>
+    <bool name="config_allowAllRotations">true</bool>
 
-  </array>
+    <bool name="config_lidControlsScreenLock">false</bool>
+    <bool name="config_lidControlsSleep">false</bool>
+    <integer name="config_lidNavigationAccessibility">0</integer>
+    <integer name="config_lidKeyboardAccessibility">0</integer>
+
+    <!-- Counter-Linear Fallback for Slider (50% = ~185/255) -->
+    <item name="config_screenBrightnessSettingMinimumFloat" format="float" type="dimen">0.058823529</item>
+    <item name="config_screenBrightnessSettingMaximumFloat" format="float" type="dimen">1.0</item>
+
+    <integer-array name="config_screenBrightnessBacklight">
+        <item>15</item>
+        <item>60</item>
+        <item>110</item>
+        <item>150</item>
+        <item>185</item>
+        <item>215</item>
+        <item>235</item>
+        <item>245</item>
+        <item>255</item>
+    </integer-array>
+
+    <array name="config_screenBrightnessNits">
+        <item>15.0</item>
+        <item>60.0</item>
+        <item>110.0</item>
+        <item>150.0</item>
+        <item>185.0</item>
+        <item>215.0</item>
+        <item>235.0</item>
+        <item>245.0</item>
+        <item>255.0</item>
+    </array>
 
 </resources>
