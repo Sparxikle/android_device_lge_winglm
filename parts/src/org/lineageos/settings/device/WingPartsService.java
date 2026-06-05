@@ -11,6 +11,7 @@ import android.util.Log;
 public class WingPartsService extends Service {
     private static final String TAG = "WingPartsService";
     private PopupCameraManager mPopupCameraManager;
+    private SecondaryScreenMediaManager mSecondaryScreenMediaManager;
 
     private final BroadcastReceiver mShutdownReceiver = new BroadcastReceiver() {
         @Override
@@ -19,6 +20,9 @@ public class WingPartsService extends Service {
                 Log.i(TAG, "Device is shutting down. Stopping modules.");
                 if (mPopupCameraManager != null) {
                     mPopupCameraManager.shutdown();
+                }
+                if (mSecondaryScreenMediaManager != null) {
+                    mSecondaryScreenMediaManager.shutdown();
                 }
             }
         }
@@ -31,6 +35,9 @@ public class WingPartsService extends Service {
         
         mPopupCameraManager = new PopupCameraManager(this);
         mPopupCameraManager.start();
+
+        mSecondaryScreenMediaManager = new SecondaryScreenMediaManager(this);
+        mSecondaryScreenMediaManager.start();
         
         IntentFilter filter = new IntentFilter();
         filter.addAction(Intent.ACTION_SHUTDOWN);

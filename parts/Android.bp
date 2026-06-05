@@ -1,15 +1,38 @@
 android_app {
     name: "WingParts",
-    srcs: ["src/**/*.java"],
+    srcs: [
+        "src/**/*.java",
+        "src/**/*.kt",
+    ],
+    resource_dirs: ["res"],
     certificate: "platform",
     platform_apis: true,
     privileged: true,
     system_ext_specific: true,
+    required: ["privapp-permissions-wingparts.xml"],
     static_libs: [
         "androidx.core_core",
+        "androidx.activity_activity-compose",
+        "androidx.compose.animation_animation-graphics",
+        "androidx.compose.foundation_foundation",
+        "androidx.compose.material_material-icons-extended",
+        "androidx.compose.material3_material3",
+        "androidx.compose.runtime_runtime",
+        "androidx.compose.ui_ui",
+        "androidx.lifecycle_lifecycle-runtime-ktx",
+        "androidx.lifecycle_lifecycle-viewmodel-ktx",
+        "androidx.savedstate_savedstate",
         "vendor.wing.hardware.motor-V1-java",
     ],
+    kotlincflags: ["-Xjvm-default=all"],
     optimize: {
         enabled: false,
     },
+}
+
+prebuilt_etc {
+    name: "privapp-permissions-wingparts.xml",
+    sub_dir: "permissions",
+    src: "privapp-permissions-wingparts.xml",
+    system_ext_specific: true,
 }
