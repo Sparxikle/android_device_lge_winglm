@@ -2,3 +2,6 @@ type motor_device, dev_type;
 
 # Fingerprint device type
 type fingerprint_device, dev_type;
+
+# Vibrator device type
+type tspdrv_device, dev_type;

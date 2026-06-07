@@ -1,0 +1,16 @@
+type hal_motor_default, domain;
+type hal_motor_default_exec, exec_type, vendor_file_type, file_type;
+
+init_daemon_domain(hal_motor_default)
+
+# Register HIDL service
+add_hwservice(hal_motor_default, hal_lge_motor_hwservice)
+hwbinder_use(hal_motor_default)
+get_prop(hal_motor_default, hwservicemanager_prop)
+
+# Access motor device
+allow hal_motor_default motor_device:chr_file rw_file_perms;
+
+# Access sysfs
+allow hal_motor_default sysfs:dir search;
+allow hal_motor_default sysfs:file r_file_perms;

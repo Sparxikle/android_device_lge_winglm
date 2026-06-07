@@ -29,3 +29,6 @@ vendor.fastrpc.fallback=false
 
 # Voice Assistant
 ro.opa.device_model_id=time-kr-deviceaction-time-7nfybr
+
+ro.vendor.lge.vib_magnitude_index=0,26,46,62,78,94,110,127
+persist.vendor.lge.vibrator.hdperiod=5000

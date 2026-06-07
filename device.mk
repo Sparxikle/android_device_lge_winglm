@@ -40,12 +40,13 @@ $(call soong_config_set_bool,stagefright,target_disable_thumbnail_block_model,tr
 
 # Init Script
 PRODUCT_COPY_FILES += \
-    device/lge/winglm/configs/init/vendor.lge.hardware.sensors.devicecontext@1.0-service.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/vendor.lge.hardware.sensors.devicecontext@1.0-service.rc
+    device/lge/winglm/configs/init/vendor.lge.hardware.sensors.devicecontext@1.0-service.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/vendor.lge.hardware.sensors.devicecontext@1.0-service.rc \
+    device/lge/winglm/configs/init/init.immvibed.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.immvibed.rc
 
 # Custom Wing fixes
 PRODUCT_PACKAGES += \
-		WingParts \
-		vendor.wing.hardware.motor-service \
+                WingParts \
+                vendor.wing.hardware.motor-service \
 
 PRODUCT_COPY_FILES += \
     device/lge/winglm/audio/cam_popup_open.ogg:$(TARGET_COPY_OUT_PRODUCT)/media/audio/ui/cam_popup_open.ogg \

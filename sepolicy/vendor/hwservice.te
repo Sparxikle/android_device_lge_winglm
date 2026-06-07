@@ -1,0 +1,2 @@
+type hal_lge_vibrator_hwservice, hwservice_manager_type;
+type hal_lge_motor_hwservice, hwservice_manager_type;
