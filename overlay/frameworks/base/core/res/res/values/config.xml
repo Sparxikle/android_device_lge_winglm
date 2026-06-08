@@ -38,15 +38,16 @@
     <!-- Type of the udfps long press sensor. Empty if long press is not supported. -->
     <string name="config_dozeUdfpsLongPressSensorType" translatable="false">org.lineageos.sensor.udfps</string>
 
-    <bool name="config_matchSecondaryInternalDisplaysOrientationToReverseDefaultDisplay">false</bool>
+    <bool name="config_matchSecondaryInternalDisplaysOrientationToReverseDefaultDisplay">true</bool>
     <bool name="config_keepSecondaryInternalDisplayEnabled">true</bool>
-    <integer name="config_secondaryInternalDisplayRotationOffset">0</integer>
+    <integer name="config_secondaryInternalDisplayRotationOffset">1</integer>
     <bool name="config_supportsMultiDisplay">true</bool>
     <bool name="config_supportsConcurrentInternalDisplays">true</bool>
     <string name="config_rearDisplayPhysicalAddress">130</string>
     <bool name="config_localDisplaysMirrorContent">false</bool>
     <bool name="config_perDisplayFocusEnabled">true</bool>
-    <bool name="config_navBarCanMove">false</bool>
+    <bool name="config_navBarCanMove">true</bool>
+    <bool name="config_allowSeamlessRotationDespiteNavBarMoving">true</bool>
     <bool name="config_supportsSystemDecorsOnSecondaryDisplays">true</bool>
 
     <string-array name="config_displayUniqueIdArray" translatable="false">
@@ -54,7 +55,7 @@
         <item>local:4630946299134858882</item>
     </string-array>
 
-    <!-- Lawnchair for secondary display -->
+    <!-- Launcher3 for secondary display -->
     <string name="config_secondaryHomePackage" translatable="false">com.android.launcher3</string>
     <bool name="config_useSystemProvidedLauncherForSecondary">true</bool>
 
