@@ -27,6 +27,8 @@ namespace_imports = [
 
 
 blob_fixups: blob_fixups_user_type = {
+    'system_ext/lib64/libImmVibeJ.so': blob_fixup()
+        .fix_soname(),
     'vendor/lib64/libets_teeclient_v2.so': blob_fixup()
         .add_needed('libets_teeclient_v2_shim.so')
         .remove_needed('libfpsph.so'),

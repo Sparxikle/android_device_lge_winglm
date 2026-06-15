@@ -16,8 +16,9 @@ public class WingPartsService extends Service {
     private final BroadcastReceiver mShutdownReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            if (Intent.ACTION_SHUTDOWN.equals(intent.getAction())) {
-                Log.i(TAG, "Device is shutting down. Stopping modules.");
+            String action = intent.getAction();
+            if (Intent.ACTION_SHUTDOWN.equals(action) || Intent.ACTION_REBOOT.equals(action)) {
+                Log.i(TAG, "Device is " + (Intent.ACTION_SHUTDOWN.equals(action) ? "shutting down" : "rebooting") + ". Stopping modules.");
                 if (mPopupCameraManager != null) {
                     mPopupCameraManager.shutdown();
                 }
@@ -41,6 +42,7 @@ public class WingPartsService extends Service {
         
         IntentFilter filter = new IntentFilter();
         filter.addAction(Intent.ACTION_SHUTDOWN);
+        filter.addAction(Intent.ACTION_REBOOT);
         registerReceiver(mShutdownReceiver, filter, Context.RECEIVER_EXPORTED);
     }
 

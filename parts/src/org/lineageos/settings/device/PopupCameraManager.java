@@ -138,6 +138,7 @@ public class PopupCameraManager {
                         mIsCameraUp = true;
                         
                         mHardwareExecutor.execute(() -> {
+                            if (mIsShuttingDown) return;
                             mSoundPool.play(mSoundIdUp, SOUND_VOLUME, SOUND_VOLUME, 1, 0, 1.0f);
                             MotorNative.moveUp();
                         });
@@ -183,6 +184,7 @@ public class PopupCameraManager {
                     mIsCameraUp = true;
 
                     mHardwareExecutor.execute(() -> {
+                        if (mIsShuttingDown) return;
                         mSoundPool.play(mSoundIdUp, SOUND_VOLUME, SOUND_VOLUME, 1, 0, 1.0f);
                         MotorNative.moveUp();
                     });
