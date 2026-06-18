@@ -830,11 +830,6 @@ vendor/lib64/libqdMetaData.so
 vendor/lib/libstreamparser.so
 vendor/lib/libvideoutils.so
 
-# Vibrator
-vendor/bin/immvibed
-vendor/lib64/libpparam.so
-system_ext/lib64/libImmVibeJ.so
-
 vendor/etc/seccomp_policy/mediacodec.policy
 vendor/etc/media_codecs_vendor_v1.xml
 vendor/etc/media_codecs_vendor_v2.xml

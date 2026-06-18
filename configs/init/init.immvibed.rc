@@ -1,5 +1,0 @@
-service immvibed /vendor/bin/immvibed -p 99 -u 1000
-    class late_start
-    user root
-    group root
-    ioprio rt 4

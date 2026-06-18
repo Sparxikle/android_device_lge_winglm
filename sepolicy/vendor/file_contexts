@@ -1,9 +1,7 @@
 /vendor/bin/hw/vendor\.lge\.hardware\.motor@1\.0-service-popupcam    u:object_r:hal_motor_default_exec:s0
 /vendor/bin/hw/vendor\.wing\.hardware\.motor-service          u:object_r:hal_motor_wing_exec:s0
-/vendor/bin/immvibed                                         u:object_r:immvibed_exec:s0
 /dev/stdrv                                                   u:object_r:motor_device:s0
 /dev/tspdrv                                                  u:object_r:tspdrv_device:s0
-/(vendor|system/vendor)/bin/hw/android\.hardware\.lge\.vibrator-service-immersion u:object_r:hal_vibrator_default_exec:s0
 
 # Label the Egis fingerprint sensor node
 /dev/esfp0                         u:object_r:fingerprint_device:s0
