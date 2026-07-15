@@ -53,6 +53,8 @@ import androidx.compose.ui.graphics.drawscope.drawIntoCanvas
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.ComposeView
+import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.unit.Density
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -283,28 +285,34 @@ class SecondaryScreenMediaManager(private val mContext: Context) : DisplayManage
         if (mMediaView != null) return
         val displayContext = mContext.createDisplayContext(display)
         mWindowManager = displayContext.getSystemService(WindowManager::class.java)
+        val displayMetrics = displayContext.resources.displayMetrics
+        val customDensity = displayMetrics.widthPixels / 412f
         mMediaView = OverlayComposeWrapper(displayContext).apply {
             composeView.setContent {
-                MaterialTheme(colorScheme = darkColorScheme()) {
-                    MediaControlsScreen(
-                        title = mediaTitle, appName = mediaAppName, isPlaying = isPlaying,
-                        volume = volume, maxVolume = maxVolume, brightness = brightness, art = mediaArt,
-                        onPlayPause = {
-                            val state = mActiveMediaController?.playbackState?.state
-                            if (state == PlaybackState.STATE_PLAYING || state == PlaybackState.STATE_BUFFERING) {
-                                mActiveMediaController?.transportControls?.pause()
-                            } else {
-                                mActiveMediaController?.transportControls?.play()
-                            }
-                        },
-                        onPrev = { mActiveMediaController?.transportControls?.skipToPrevious() },
-                        onNext = { mActiveMediaController?.transportControls?.skipToNext() },
-                        onRewind = { mActiveMediaController?.transportControls?.rewind() },
-                        onFastForward = { mActiveMediaController?.transportControls?.fastForward() },
-                        onVolumeChange = { v -> volume = v; mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, v, 0) },
-                        onBrightnessChange = { b -> brightness = b; Settings.System.putInt(mContext.contentResolver, Settings.System.SCREEN_BRIGHTNESS, b) },
-                        onClose = { removeMediaControls() }
-                    )
+                CompositionLocalProvider(
+                    LocalDensity provides Density(density = customDensity, fontScale = 1f)
+                ) {
+                    MaterialTheme(colorScheme = darkColorScheme()) {
+                        MediaControlsScreen(
+                            title = mediaTitle, appName = mediaAppName, isPlaying = isPlaying,
+                            volume = volume, maxVolume = maxVolume, brightness = brightness, art = mediaArt,
+                            onPlayPause = {
+                                val state = mActiveMediaController?.playbackState?.state
+                                if (state == PlaybackState.STATE_PLAYING || state == PlaybackState.STATE_BUFFERING) {
+                                    mActiveMediaController?.transportControls?.pause()
+                                } else {
+                                    mActiveMediaController?.transportControls?.play()
+                                }
+                            },
+                            onPrev = { mActiveMediaController?.transportControls?.skipToPrevious() },
+                            onNext = { mActiveMediaController?.transportControls?.skipToNext() },
+                            onRewind = { mActiveMediaController?.transportControls?.rewind() },
+                            onFastForward = { mActiveMediaController?.transportControls?.fastForward() },
+                            onVolumeChange = { v -> volume = v; mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, v, 0) },
+                            onBrightnessChange = { b -> brightness = b; Settings.System.putInt(mContext.contentResolver, Settings.System.SCREEN_BRIGHTNESS, b) },
+                            onClose = { removeMediaControls() }
+                        )
+                    }
                 }
             }
         }
